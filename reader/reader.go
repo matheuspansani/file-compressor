@@ -1,24 +1,22 @@
 package reader
 
 import (
+	"fmt"
 	"io"
-	"log"
 	"os"
-	"errors"
 )
 
 func ReadFile(filePath string) ([]byte, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
-		log.Fatal(err)
-	}
-	fileBytes, err := io.ReadAll(file)
-	if err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("erro ao abrir arquivo: %w", err)
 	}
 	defer file.Close()
 
-	failed := "Not possible read file"
+	fileBytes, err := io.ReadAll(file)
+	if err != nil {
+		return nil, fmt.Errorf("erro ao ler arquivo: %w", err)
+	}
 
-	return fileBytes, errors.New(failed)
+	return fileBytes, nil
 }

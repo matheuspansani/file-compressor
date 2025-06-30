@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import ("fmt"
+		"file-compressor/mapper")
 
 func main() {
-	fmt.Println("Welcome to file compress, will be continue")
+	maps, _ := mapper.MapBytes("")
+	fmt.Println(maps)
 }
